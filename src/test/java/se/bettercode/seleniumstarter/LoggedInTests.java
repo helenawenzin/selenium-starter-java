@@ -1,13 +1,15 @@
 package se.bettercode.seleniumstarter;
 
 import org.junit.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class MyFirstTest {
+public class LoggedInTests {
 
     private static WebDriver driver;
     public static NokController nokController;
@@ -27,17 +29,6 @@ public class MyFirstTest {
     @Before
     public void before(){
         driver.get("http://www.nok.se/loggain");
-    }
-
-    @Test
-    @Ignore //ToDo starts from www.nok.se and not the login page
-    public void isNokWebpageUp(){
-        assertEquals("NoK", driver.getTitle());
-    }
-
-    @Test
-
-    public void login() throws InterruptedException {
 
         nokController.getEmailElement().sendKeys("Test.Larare@nok.se");
         nokController.getPasswordElement().sendKeys("testLarare");
@@ -46,15 +37,22 @@ public class MyFirstTest {
         assertEquals("Mina sidor - Natur och Kultur", driver.getTitle());
     }
 
-    @Test
-    @Ignore   // ToDo starts from www.nok.se, not the login page
-    public void search() {
 
-        nokController.getSearchElement().sendKeys("rivstart");
-        nokController.getSearchElementOnCLick().click();
-        assertEquals("Sök - Natur och Kultur", driver.getTitle());
+    @Test
+    //@Ignore
+    public void openNokFlex() throws InterruptedException {
+
+        nokController.getNokFlexProduct().click();
 
     }
 
+    @Test
+    public void openAllServicesOnMyPages() {
+
+        List<WebElement> list = nokController.getListOfServicesFromMyPages();
+        for(WebElement element: list) {
+            element.click();
+        }
+    }
 
 }
