@@ -25,10 +25,14 @@ public class NokController {
     }
 
     public WebElement getSearchElement() {
-        return driver.findElement(By.xpath("//*[@id='ctl00_cphTotalRegion_cphWrapperRegion_cphHeaderRegion_uHeader_uTopMenu_ctl00_txtSearch']"));
+        return driver.findElement(By.id("ctl00_cphTotalRegion_cphWrapperRegion_cphHeaderRegion_uHeader_uTopMenu_ctl00_txtSearch"));
     }
 
     public WebElement getNokFlexProduct() {
         return driver.findElement(By.cssSelector("img[title=\"Matematik 5000 1a Röd NOKflex Lärare\"]"));
+    }
+
+    public WebElement getSearchElementOnCLick() {
+        return driver.findElement(By.id("ctl00_cphTotalRegion_cphWrapperRegion_cphHeaderRegion_uHeader_uTopMenu_ctl00_lnkSearch"));
     }
 }

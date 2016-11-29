@@ -30,11 +30,13 @@ public class MyFirstTest {
     }
 
     @Test
-    public void trySomething(){
+    @Ignore //ToDo starts from www.nok.se and not the login page
+    public void isNokWebpageUp(){
         assertEquals("NoK", driver.getTitle());
     }
 
     @Test
+
     public void login() throws InterruptedException {
 
         nokController.getEmailElement().sendKeys("Test.Larare@nok.se");
@@ -45,10 +47,12 @@ public class MyFirstTest {
     }
 
     @Test
-    @Ignore
+    @Ignore   // ToDo starts from www.nok.se, not the login page
     public void search() {
 
         nokController.getSearchElement().sendKeys("rivstart");
+        nokController.getSearchElementOnCLick().click();
+        assertEquals("Sök - Natur och Kultur", driver.getTitle());
 
     }
 
